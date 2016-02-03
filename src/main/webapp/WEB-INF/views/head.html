@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+#if($!article && $!article.title)
+<title>$!article.title - 一路博客</title>
+#else
+<title>一路博客</title>
+#end
+
+#if($!article && $!article.description)
+<meta name="description" content="$!article.description, 一路博客,16博客站点可以提供各种类型的文章,致力于为互联网上的用户提供一个互相沟通的社区" />
+#else
+<meta name="description" content="一路博客,16博客站点可以提供各种类型的文章,致力于为互联网上的用户提供一个互相沟通的社区" />
+#end
+
+#if($!article && $!article.label)
+<meta name="keywords" content="16boke,一路博客,www.16boke.com,16博客,博客,菩提蛮,#foreach($row in $!article.label)$row.labelname,#end">
+#else
+<meta name="keywords" content="16boke,一路博客,www.16boke.com,16博客,博客,菩提蛮">
+#end
+
+<meta name="HandheldFriendly" content="True" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="baidu-site-verification" content="xTjnEs8WP2" />
+<link rel="shortcut icon" href="${rc.contextPath}/images/favicon.ico">
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/highlight.js/9.0.0/styles/vs.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${rc.contextPath}/css/screen.css?v=1.1" />
+
+<script>
+	var _hmt = _hmt || [];
+	var rc = "${rc.contextPath}";
+</script>
+
+<link rel="canonical" href="http://www.16boke.com/" />
+<meta name="referrer" content="origin" />
+<script type="text/javascript"
+	src="${rc.contextPath}/js/common/ghost-url.min.js?v=1.1"></script>
+<script type="text/javascript">
+	ghost.init({
+		clientId : "ghost-frontend",
+		clientSecret : "26b0e31d612d"
+	});
+</script>
+<meta name="generator" content="Ghost 0.7" />
+<link rel="alternate" type="application/rss+xml" title="16boke.com 一路博客"
+	href="http://www.16boke.com/" />
+</head>
+<body class="home-template">
+	<!-- start header -->
+	<header class="main-header"
+		style="background-image: url(${rc.contextPath}/images/index.jpg)">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h1>
+						<span class="hide">16boke - </span>一路博客
+					</h1>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- end header -->
+
+	<!-- start navigation -->
+	<nav class="main-navigation">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="navbar-header">
+						<span class="nav-toggle-button collapsed" data-toggle="collapse"
+							data-target="#main-menu"> <span class="sr-only">Toggle
+								navigation</span> <i class="fa fa-bars"></i>
+						</span>
+					</div>
+					<div class="collapse navbar-collapse" id="main-menu">
+						<ul class="menu">
+							<li #if($!subType && $!subType == "index") class="nav-current" #end role="presentation"><a href="${rc.contextPath}/article">首页</a></li>
+							#foreach($type in $!typeList)
+								<li #if($!subType && $!subType == $!type.typecode ) class="nav-current" #end role="presentation"><a href="${rc.contextPath}/article/nav/$!type.typecode" title="一路博客的$!type.typename专区">$!type.typename</a></li>
+							#end
+							<li #if($!subType && $!subType == "about") class="nav-current" #end role="presentation"><a href="${rc.contextPath}/about">关于系统</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- end navigation -->

@@ -1,0 +1,94 @@
+#parse("./admin/head.html")
+<link href="${rc.contextPath}/css/custom.css" rel="stylesheet">
+<link href="${rc.contextPath}/js/common/summernote/summernote.css" rel="stylesheet">
+<link href="${rc.contextPath}/css/bootstrap-multiselect.css" rel="stylesheet">
+<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+			<main class="col-md-12">
+				<div class="cover">
+					<form id="articleForm" class="form-horizontal" method="post" action="${rc.contextPath}/admin/article/save">
+						<div class="form-group">
+							<label class="col-sm-1 control-label">标题：</label>
+							<div class="col-sm-11 text-left">
+								<input type="hidden" id="id" name="id" value="$!article.id">
+								<input class="form-control" id="title" name="title" value="$!article.title"
+									placeholder="标题" type="text">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">标签：</label>
+							<div class="col-sm-11 text-left">
+								<select id="labelId" name="labelId" class="form-control" multiple="multiple">
+							      	#foreach($row in $label)
+										<option value="$row.id">$row.labelname</option>
+									#end
+							    </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">类别：</label>
+							<div class="col-sm-11 text-left">
+								<select id="typeId" name="typeId" class="form-control" multiple="multiple">
+							      	#foreach($row in $type)
+										<option value="$row.id">$row.typename</option>
+									#end
+							    </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">评论：</label>
+							<div class="col-sm-11 text-left">
+								<div class="checkbox">
+							        <label>
+							          <input id="cancomment" name="cancomment" type="checkbox" #if($!article.cancomment == 1) checked #end value="1"> 允许评论
+							        </label>
+							      </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">推荐：</label>
+							<div class="col-sm-11 text-left">
+								<div class="checkbox">
+							        <label>
+							          <input id="recommend" name="recommend" type="checkbox" #if($!article.recommend == 1) checked #end value="1"> 推荐文章
+							        </label>
+							      </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">封面：</label>
+							<div class="col-sm-11 text-left">
+								<div><input type="file" id="exampleInputFile" value="上传"></div>
+								<div id="coverImageDiv" class="text-left" style="#if(!$!article.cover) display:none; #end"><img id="coverImage" style="width:720px;height:255px;margin-top: 10px;" src="${rc.contextPath}/images/404.jpg"/></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">描述：</label>
+							<div class="col-sm-11 text-left">
+								<textarea name="description" class="form-control" id="description" placeholder="输入有效的描述，增加搜索引擎收录机率">$!article.description</textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">内容：</label>
+							<div class="col-sm-11 text-left">
+								<textarea name="detail" class="summernote" id="detail">$!article.detail</textarea>
+							</div>
+						</div>
+	
+						<div class="form-group">
+							<button class="btn btn-default-new" type="submit" id="saveArticle">保存</button>
+							<button class="btn btn-default-new" type="button" id="cancelArticle">取消</button>
+						</div>
+					</form>
+				</div>
+			</main>
+		</div>
+	</div>
+</section>
+#parse("./admin/foot.html")
+<script type="text/javascript" src="${rc.contextPath}/js/article/input.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/js/common/summernote/summernote.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/js/common/summernote/lang/summernote-zh-CN.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/js/common/bootstrap-multiselect.js"></script>

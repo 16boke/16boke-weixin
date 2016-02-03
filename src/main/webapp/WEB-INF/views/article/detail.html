@@ -1,0 +1,123 @@
+#parse("./head.html")
+<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+			<main class="col-md-8 main-content">
+			#if(!$!article.id)
+				<article id="61" class="post tag-lumen tag-xin-ban-ben-fa-bu">
+					<section class="post-title text-center">
+						文章不存在!
+					</section>
+				</article>
+			#else
+			<article id="61" class="post tag-lumen tag-xin-ban-ben-fa-bu">
+				#if($!article.recommend == "1")
+					<div title="推荐文章" class="featured">
+				        <i class="fa fa-star"></i>
+				    </div>
+				#end
+				<header class="post-head">
+					<h1 class="post-title">$!article.title</h1>
+					<section class="post-meta">
+						<span class="author">阅读量：$!article.browsecount</span>
+						&nbsp;
+						<time class="post-date" datetime="$!dateUtil.getTimeCN($!article.updatetime)"
+							title="$!dateUtil.getTimeCN($!article.updatetime)"> $!dateUtil.getDateCN($!article.updatetime) </time>
+					</section>
+				</header>
+
+				#if($!article.cover)
+					<section class="featured-media">
+						<img src="$!article.cover" alt="$!article.title">
+					</section>
+				#end
+
+				<section class="post-content">
+					<p>
+					$!article.detail
+					</p>
+				</section>
+
+				<footer class="post-footer clearfix">
+					<div class="pull-left tag-list">
+						<i class="fa fa-folder-open-o"></i>
+						#foreach($row in $!article.label)
+							<a href="${rc.contextPath}/article/label/$!row.labelcode">$row.labelname</a>&nbsp;
+						#end
+					</div>
+					<div class="pull-right share">
+						<div class="bdsharebuttonbox share-icons">
+							<a href="#" class="bds_more" data-cmd="more"></a> <a href="#"
+								class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> <a
+								href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+							<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a> <a
+								href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+							<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+						</div>
+					</div>
+					<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+				</footer>
+
+			</article>
+			#end
+			<!-- 
+			<div class="about-author clearfix">
+				<a href="/author/wangsai/"><img
+					src="http://image.golaravel.com/6/d4/82b9646073bef7a7d67c6cd1db987.png"
+					alt="王赛" class="avatar pull-left"></a>
+
+				<div class="details">
+					<div class="author">
+						关于作者 <a href="/author/wangsai/">王赛</a>
+					</div>
+					<div class="meta-info">
+						<span class="loaction"><i class="fa fa-home"></i>北京</span> <span
+							class="website"><i class="fa fa-globe"></i><a
+							href="http://www.bootcss.com/" targer="_blank">个人网站/博客</a></span>
+					</div>
+				</div>
+			</div>
+			 -->
+			
+			<!-- 有前一页或者后一页的时候才显示分页按钮 -->
+			#if($!preArticle || $!nextArticle)
+				<div class="prev-next-wrap clearfix">
+					#if($!preArticle)
+					<a href="${rc.contextPath}/article/detail/$!preArticle.id" class="btn btn-default" title="$!preArticle.title">
+					<i class="fa fa-angle-left fa-fw"></i> #if($!preArticle.title.length()>30) $!preArticle.title.substring(0,30)... #else $!preArticle.title #end</a>
+					#end
+					&nbsp; 
+					#if($!nextArticle)
+					<a href="${rc.contextPath}/article/detail/$!nextArticle.id" class="btn btn-default" title="$!nextArticle.title">#if($!nextArticle.title.length()>30) $!nextArticle.title.substring(0,30)... #else $!nextArticle.title #end 
+					<i class="fa fa-angle-right fa-fw"></i></a>
+					#end
+				</div>
+			#end
+			
+			#if($!article.cancomment && $!article.cancomment == "1")
+				<!-- 多说评论框 start -->
+				<div class="ds-thread" data-thread-key="$!article.id" data-title="$!article.title" data-url="http://www.16boke.com/article/detail/$!article.id"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"16boke"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+				</script>
+				<!-- 多说公共JS代码 end -->
+			#end
+			</main>
+			<!-- start aside -->
+			#parse("./right.html")
+			<!-- end aside -->
+		</div>
+	</div>
+</section>
+#parse("./foot.html")

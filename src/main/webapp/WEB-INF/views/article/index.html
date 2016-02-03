@@ -1,0 +1,97 @@
+#parse("./head.html")
+<!-- start site's main content area -->
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content">
+				#if($!type && $!type == "label")
+	            	<input type="hidden" id="label" value="$!subType"/>
+					<div class="cover tag-cover">
+	                    <h3 class="tag-name">
+							标签：$!labelName
+	                    </h3>
+	                    <div class="post-count">
+							共 <span id="pagecount"></span> 篇文章
+	                    </div>
+	                </div>
+	            #elseif($!active && $!active == "user")
+	            	<div class="cover author-cover">
+					    <div class="avatar-wrap">
+					            <img src="" alt="" class="avatar">
+					    </div>
+					    <h3 class="author-name">
+					        	作者：$!subType
+					    </h3>
+					    <div class="meta-info">
+					        <span class="post-count"><i class="fa fa-pencil-square-o"></i>19 篇文章</span>
+					        <span class="loaction"><i class="fa fa-map-marker"></i>北京</span>
+					        <span class="website"><i class="fa fa-globe"></i><a href="http://www.bootcss.com/" targer="_BLANK">个人网站/博客</a></span>
+					    </div>
+					    <div class="bio"></div>
+					</div>
+	            #elseif($!type && $!type == "nav")
+	            	<input type="hidden" id="nav" value="$!subType"/>
+	            	<div class="cover tag-cover">
+	                    <h3 class="tag-name">
+							$!typeName 专区
+	                    </h3>
+	                    <div class="post-count">
+							共 <span id="pagecount"></span> 篇文章
+	                    </div>
+	                </div>
+	            #end
+                <div id="articleTbody">
+	                <!-- 
+	                <article class="post tag-lumen tag-xin-ban-ben-fa-bu">
+						<div class="featured" title="推荐文章">
+					        <i class="fa fa-star"></i>
+					    </div>
+	                    <div class="post-head">
+	                        <h1 class="post-title"><a href="${rc.contextPath}/article/detail/1">一路博客</a></h1>
+	
+	                        <div class="post-meta">
+	                            <span class="author">阅读量：1000</span> &nbsp;
+	                            <time class="post-date" datetime="2016年1月25日  10点33分" title="2016年1月25日  10点33分">
+	                                2016年1月25日
+	                            </time>
+	                        </div>
+	                    </div>
+	                    <div class="featured-media">
+	                        <a href="${rc.contextPath}/article/detail/1"><img src="${rc.contextPath}/images/index.jpg"
+	                                alt="一路博客"></a>
+	                    </div>
+	                    <div class="post-content">
+	                        <p>一路博客</p>
+	                    </div>
+	                    <div class="post-permalink text-right">
+	                        <a href="${rc.contextPath}/article/detail/1" class="btn btn-default">阅读全文</a>
+	                    </div>
+	
+	                    <footer class="post-footer clearfix">
+	                        <div class="pull-left tag-list">
+	                            <i class="fa fa-folder-open-o"></i>
+	                            <a href="${rc.contextPath}/article/label/cpp">C++</a>, 
+	                            <a href="${rc.contextPath}/article/label/swtest">软件测试</a>
+	                        </div>
+	                        <div class="pull-right share">
+	                        </div>
+	                    </footer>
+	                </article>
+	                 -->
+				</div>
+                <nav class="pagination" role="navigation">
+                    <a class="older-posts" id="prePage" href="javascript:void(0)" onclick="pre()" style="display:none"><i class="fa fa-angle-left"></i></a>
+					<span class="page-number">第 <span id="curPage">1</span> 页 &frasl; 共 <span id="totalPage">1</span> 页</span> 
+					<a class="older-posts" id="nextPage" href="javascript:void(0)" onclick="next()" style="display:none"><i class="fa fa-angle-right"></i></a>
+                </nav>
+
+
+            </main>
+			<!-- start aside -->
+			#parse("./right.html")
+			<!-- end aside -->
+        </div>
+    </div>
+</section>
+#parse("./foot.html")
+<script type="text/javascript" src="${rc.contextPath}/js/article/main.js"></script>

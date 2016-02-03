@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbox>
+	<data type="string">
+		<key>AppName</key>
+		<value>16boke</value>
+	</data>
+	<tool>
+		<key>date</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DateTool</class>
+		<parameter name="format" value="yyyy-MM-dd" />
+	</tool>
+	<tool>
+		<key>time</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DateTool</class>
+		<parameter name="format" value="yyyy-MM-dd HH:mm:ss" />
+	</tool>
+	<tool>
+		<key>number</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.NumberTool</class>
+		<parameter name="format" value="#0.0"/>
+	</tool>
+	<tool>
+		<key>stringUtil</key>
+		<scope>application</scope>
+		<class>com.utils.StringUtil</class>
+	</tool>
+	<tool>
+		<key>dateUtil</key>
+		<scope>application</scope>
+		<class>com.utils.DateUtil</class>
+	</tool>
+</toolbox>

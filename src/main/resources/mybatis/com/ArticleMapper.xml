@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.business.article.dao.ArticleDao" >
+  <resultMap id="BaseResultMap" type="com.business.article.model.Article" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="COVER" property="cover" jdbcType="VARCHAR" />
+    <result column="CANCOMMENT" property="cancomment" jdbcType="INTEGER" />
+    <result column="COMMENTCOUNT" property="commentcount" jdbcType="INTEGER" />
+    <result column="BROWSECOUNT" property="browsecount" jdbcType="INTEGER" />
+    <result column="UVCOUNT" property="uvcount" jdbcType="INTEGER" />
+    <result column="LOVECOUNT" property="lovecount" jdbcType="INTEGER" />
+    <result column="RECOMMEND" property="recommend" jdbcType="INTEGER" />
+    <result column="INSERTTIME" property="inserttime" jdbcType="TIMESTAMP" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="USERID" property="userid" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.business.article.model.Article" extends="BaseResultMap" >
+    <result column="DESCRIPTION" property="description" jdbcType="LONGVARCHAR" />
+    <result column="DETAIL" property="detail" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TITLE, COVER, CANCOMMENT, COMMENTCOUNT, BROWSECOUNT,UVCOUNT, LOVECOUNT, RECOMMEND, INSERTTIME, UPDATETIME, 
+    USERID
+  </sql>
+  <sql id="Blob_Column_List" >
+    DESCRIPTION, DETAIL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_article
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_article
+  </select>
+  <select id="getTop10Article" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_article
+    order by updatetime desc
+    limit 0,10
+  </select>
+  <select id="getArticleIds" resultType="java.lang.Integer">
+    select 
+    id
+    from t_article
+    order by updatetime desc
+  </select>
+  <select id="getTop5Article" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_article
+    order by updatetime desc
+    limit 0,5
+  </select>
+  <select id="getArticleList" resultMap="ResultMapWithBLOBs" parameterType="com.business.base.vo.PageModel">
+    select 
+    a.*
+    from t_article a
+    <if test="params.type != null" >
+        ,t_type b,t_article_type c
+    </if>
+    <if test="params.label != null" >
+        ,t_label b,t_article_label c
+    </if>
+    where 1=1 
+    <if test="params.type != null" >
+        and b.typecode=#{params.type,jdbcType=VARCHAR}
+        and b.id=c.typeid
+        and c.articleid=a.id
+    </if>
+    <if test="params.label != null" >
+        and b.labelcode=#{params.label,jdbcType=VARCHAR}
+        and b.id=c.labelid
+        and c.articleid=a.id
+    </if>
+    order by a.updatetime desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_article
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.business.article.model.Article" useGeneratedKeys="true" keyProperty="id">
+    insert into t_article (ID, TITLE, COVER, 
+      CANCOMMENT, COMMENTCOUNT, BROWSECOUNT, UVCOUNT,
+      LOVECOUNT, RECOMMEND,INSERTTIME, UPDATETIME, 
+      USERID, DESCRIPTION,DETAIL)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, 
+      #{cancomment,jdbcType=INTEGER}, #{commentcount,jdbcType=INTEGER}, #{browsecount,jdbcType=INTEGER}, #{uvcount,jdbcType=INTEGER}, 
+      #{lovecount,jdbcType=INTEGER}, #{recommend,jdbcType=INTEGER}, #{inserttime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{userid,jdbcType=BIGINT}, #{description,jdbcType=LONGVARCHAR},#{detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.business.article.model.Article" useGeneratedKeys="true" keyProperty="id">
+    insert into t_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="cover != null" >
+        COVER,
+      </if>
+      <if test="cancomment != null" >
+        CANCOMMENT,
+      </if>
+      <if test="commentcount != null" >
+        COMMENTCOUNT,
+      </if>
+      <if test="browsecount != null" >
+        BROWSECOUNT,
+      </if>
+      <if test="uvcount != null" >
+        UVCOUNT,
+      </if>
+      <if test="lovecount != null" >
+        LOVECOUNT,
+      </if>
+      <if test="recommend != null" >
+        RECOMMEND,
+      </if>
+      <if test="inserttime != null" >
+        INSERTTIME,
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="detail != null" >
+        DETAIL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="cancomment != null" >
+        #{cancomment,jdbcType=INTEGER},
+      </if>
+      <if test="commentcount != null" >
+        #{commentcount,jdbcType=INTEGER},
+      </if>
+      <if test="browsecount != null" >
+        #{browsecount,jdbcType=INTEGER},
+      </if>
+      <if test="uvcount != null" >
+        #{uvcount,jdbcType=INTEGER},
+      </if>
+      <if test="lovecount != null" >
+        #{lovecount,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null" >
+        #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateArticleBrowse">
+  	update t_article set BROWSECOUNT=#{1},UPDATETIME=UPDATETIME where id=#{0}
+  </update>
+  <update id="updateArticleUv">
+  	update t_article set UVCOUNT=#{1},UPDATETIME=UPDATETIME where id=#{0}
+  </update>
+  <update id="updateArticleComment">
+  	update t_article set COMMENTCOUNT=#{1},UPDATETIME=UPDATETIME where id=#{0}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.business.article.model.Article" >
+    update t_article
+    <set >
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        COVER = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="cancomment != null" >
+        CANCOMMENT = #{cancomment,jdbcType=INTEGER},
+      </if>
+      <if test="commentcount != null" >
+        COMMENTCOUNT = #{commentcount,jdbcType=INTEGER},
+      </if>
+      <if test="browsecount != null" >
+        BROWSECOUNT = #{browsecount,jdbcType=INTEGER},
+      </if>
+      <if test="uvcount != null" >
+        UVCOUNT = #{uvcount,jdbcType=INTEGER},
+      </if>
+      <if test="lovecount != null" >
+        LOVECOUNT = #{lovecount,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null" >
+        RECOMMEND = #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="inserttime != null" >
+        INSERTTIME = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detail != null" >
+        DETAIL = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.business.article.model.Article" >
+    update t_article
+    set TITLE = #{title,jdbcType=VARCHAR},
+      COVER = #{cover,jdbcType=VARCHAR},
+      CANCOMMENT = #{cancomment,jdbcType=INTEGER},
+      COMMENTCOUNT = #{commentcount,jdbcType=INTEGER},
+      BROWSECOUNT = #{browsecount,jdbcType=INTEGER},
+      UVCOUNT = #{uvcount,jdbcType=INTEGER},
+      LOVECOUNT = #{lovecount,jdbcType=INTEGER},
+      RECOMMEND = #{recommend,jdbcType=INTEGER},
+      INSERTTIME = #{inserttime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      USERID = #{userid,jdbcType=BIGINT},
+      DESCRIPTION = #{description,jdbcType=LONGVARCHAR},
+      DETAIL = #{detail,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.business.article.model.Article" >
+    update t_article
+    set TITLE = #{title,jdbcType=VARCHAR},
+      COVER = #{cover,jdbcType=VARCHAR},
+      CANCOMMENT = #{cancomment,jdbcType=INTEGER},
+      COMMENTCOUNT = #{commentcount,jdbcType=INTEGER},
+      BROWSECOUNT = #{browsecount,jdbcType=INTEGER},
+      UVCOUNT = #{uvcount,jdbcType=INTEGER},
+      LOVECOUNT = #{lovecount,jdbcType=INTEGER},
+      RECOMMEND = #{recommend,jdbcType=INTEGER},
+      INSERTTIME = #{inserttime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      USERID = #{userid,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

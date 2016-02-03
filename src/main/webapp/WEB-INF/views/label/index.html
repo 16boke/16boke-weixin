@@ -1,0 +1,27 @@
+#parse("./head.html")
+<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+			<main class="col-md-8 main-content">
+			<article class="post page">
+				<header class="post-head">
+					<h1 class="post-title">标签云</h1>
+				</header>
+				<section class="post-content widget">
+					<div class="tag-cloud">
+						#foreach($label in $!labelAllList)
+                        	<a href="${rc.contextPath}/article/label/$!label.labelcode">$!label.labelname</a>
+                    	#end
+					</div>
+				</section>
+			</article>
+			</main>
+
+			<!-- start aside -->
+			#parse("./right.html")
+			<!-- end aside -->
+		</div>
+	</div>
+</section>
+#parse("./foot.html")

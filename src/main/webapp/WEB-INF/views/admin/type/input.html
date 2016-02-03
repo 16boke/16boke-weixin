@@ -1,0 +1,44 @@
+#parse("./admin/head.html")
+<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+			<main class="col-md-6 col-md-offset-3">
+			<div class="cover">
+				<form id="typeForm" class="form-horizontal" method="post" action="${rc.contextPath}/admin/type/save">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">类别名：</label>
+						<div class="col-sm-8 text-left">
+							<input type="hidden" id="id" name="id" value="$!type.id">
+							<input class="form-control" id="typename" name="typename" value="$!type.typename"
+								placeholder="类别名" type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">类别编码：</label>
+						<div class="col-sm-8 text-left">
+							<input class="form-control" id="typecode" name="typecode" value="$!type.typecode"
+								placeholder="类别编码" type="text">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">排序号：</label>
+						<div class="col-sm-8 text-left">
+							<input class="form-control" id="pxh" name="pxh" placeholder="排序号" value="$!type.pxh"
+								type="text">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<button class="btn btn-default" type="submit" id="saveType">保存</button>
+						<button class="btn btn-default" type="button" id="cancelType">取消</button>
+					</div>
+				</form>
+			</div>
+			</main>
+		</div>
+	</div>
+</section>
+#parse("./admin/foot.html")
+<script type="text/javascript" src="${rc.contextPath}/js/type/type.js"></script>

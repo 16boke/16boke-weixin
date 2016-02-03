@@ -1,0 +1,35 @@
+#parse("./admin/head.html")
+<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+			<main class="col-md-6 col-md-offset-3">
+			<div class="cover">
+				<form id="userForm" class="form-horizontal" method="post" action="${rc.contextPath}/admin/user/regist">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">用户名：</label>
+						<div class="col-sm-8 text-left">
+							<input type="hidden" id="id" name="id" value="$!user.id">
+							<input class="form-control" id="username" name="username" value="$!user.username"
+								placeholder="用户名" type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">密码：</label>
+						<div class="col-sm-8 text-left">
+							<input class="form-control" id="password" name="password" placeholder="密码" type="password">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<button class="btn btn-default" type="submit" id="saveUser">保存</button>
+						<button class="btn btn-default" type="button" id="cancelUser">取消</button>
+					</div>
+				</form>
+			</div>
+			</main>
+		</div>
+	</div>
+</section>
+#parse("./admin/foot.html")
+<script type="text/javascript" src="${rc.contextPath}/js/user/user.js"></script>

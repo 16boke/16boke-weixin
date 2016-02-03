@@ -1,0 +1,75 @@
+<footer class="main-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="widget">
+                    <h4 class="title">关于我们</h4>
+                    <div class="content recent-post">
+                        <div class="recent-single-post">
+							一份从容，几许淡定，在思绪中徐徐沉淀。一路博客站点可以提供各种类型的文章，致力于为互联网上的用户提供一个互相沟通的社区。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="widget">
+                    <h4 class="title">联系方式</h4>
+
+                    <div class="content recent-post">
+                        <div class="recent-single-post">
+                            <span>邮箱：</span>
+                            <span class="info"><a href="mailto:mail_16boke@163.com">联系我们</a></span>
+                        </div>
+                        <div class="recent-single-post">
+                        	<span>QQ群：</span>
+                            <span class="info">168424095</span>
+                        </div>
+                        <div class="recent-single-post">
+                        	<span>新浪微博：</span>
+                            <span class="info"><a target="_blank" href="http://weibo.com/putiman">新浪微博</a></span>
+                        </div>
+                        <div class="recent-single-post">
+                        	<span>腾讯微博：</span>
+                            <span class="info"><a target="_blank" href="http://t.qq.com/www_cs123?preview">腾讯微博</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="widget">
+                    <h4 class="title">友情链接</h4>
+
+                    <div class="content tag-cloud friend-links">
+                    	#foreach($row in $!linkList)
+                    		<a href="$row.linkurl" title="$row.linkname" target="_blank">$row.linkname</a>
+                    	#end
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>Copyright &copy; <a href="http://www.golaravel.com/">16boke 一路博客</a></span> |
+                <span><a href="http://www.miibeian.gov.cn/" target="_blank">鄂ICP备12008968号</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://cdn.bootcss.com/fitvids/1.1.0/jquery.fitvids.min.js"></script>
+<script src="http://cdn.bootcss.com/highlight.js/9.0.0/highlight.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/js/common/pubTools.js"></script>
+<script src="${rc.contextPath}/js/common/main.js?v=8477a98944"></script>
+</body>
+</html>

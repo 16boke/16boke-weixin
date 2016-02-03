@@ -1,0 +1,44 @@
+##渲染select
+#macro(renderSelect $id $name $style $itemList $hasChoose $value)
+	<select id="$id" name="$name" 
+		#if($style) 
+			style="$style" class="$style"  
+		#else 
+			style="" class="form-control" 
+		#end 
+		>
+		
+		#if(!$hasChoose)
+			<option value="" >--请选择--</option>
+		#elseif($hasChoose!="no")
+			<option value="" >--请选择--</option>
+		#end
+		
+		#foreach($row in $itemList)
+			#if($value && $value == $row.code)				
+				<option value="$row.code" selected>$row.name</option>
+			#else
+				<option value="$row.code">$row.name</option>
+			#end
+		#end
+    </select>
+#end
+
+##渲染radio
+#macro(renderRadio $name $style $itemList $value)
+	#foreach($row in $itemList)
+		#if($value && $value == $row.code)
+			<label><input type="radio" name="$name" 
+				#if($style) 
+        			style="$style" class="$style"  
+        		#end
+				value="$row.code" checked="checked"><span>$row.name</span></label>
+		#else
+			<label><input type="radio" name="$name" 
+				#if($style) 
+        			style="$style" class="$style"  
+        		#end
+				value="$row.code"><span>$row.name</span></label>
+		#end
+	#end
+#end

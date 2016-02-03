@@ -1,0 +1,36 @@
+#parse("./admin/head.html")
+<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+			<main class="col-md-12">
+			<div class="cover">
+				<div class="text-right" style="margin-top: -18px; margin-bottom: 10px;">
+					<a href="${rc.contextPath}/admin/type/edit" class="btn btn-default">新增类别</a>
+				</div>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>名称</td>
+							<td>编码</td>
+							<td>排序号</td>
+							<td>更新时间</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+					<tbody id="typeTbody">
+					</tbody>
+				</table>
+			</div>
+			<nav class="pagination" role="navigation">
+				<a class="older-posts" id="prePage" href="javascript:void(0)" onclick="pre()" style="display:none"><i class="fa fa-angle-left"></i></a>
+				<span class="page-number">第 <span id="curPage">1</span> 页 &frasl; 共 <span id="totalPage">1</span> 页</span> 
+				<a class="older-posts" id="nextPage" href="javascript:void(0)" onclick="next()" style="display:none"><i class="fa fa-angle-right"></i></a>
+			</nav>
+			</main>
+		</div>
+	</div>
+</section>
+#parse("./admin/foot.html")
+<script type="text/javascript" src="${rc.contextPath}/js/type/type.js"></script>

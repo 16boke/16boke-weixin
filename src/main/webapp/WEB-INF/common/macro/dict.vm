@@ -1,0 +1,31 @@
+#macro(getSiteAppTypeName $type)
+	#if($type == "1")
+		所属网站
+	#elseif($type == "2")
+		所属应用
+	#end
+#end
+
+#macro(getStatusName $status)
+	#if($status == 0)
+		待审核
+	#elseif($type == 1)
+		审核通过
+	#elseif($type == -1)
+		审核失败
+	#end
+#end
+
+#macro(isActive $menuItemName)
+	#if($active.contains($menuItemName))
+		active
+	#end
+#end
+
+#macro(getUnetfPublisherIncome $unetfPublisherIncome)
+	#if(!$unetfPublisherIncome)
+		0
+	#else
+		$!number.integer($unetfPublisherIncome)
+	#end
+#end

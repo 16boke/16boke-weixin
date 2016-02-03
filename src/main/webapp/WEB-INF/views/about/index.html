@@ -1,0 +1,35 @@
+#parse("./head.html")
+<link href="${rc.contextPath}/css/font-awesome.css" rel="stylesheet">
+<link href="${rc.contextPath}/css/style.css" rel="stylesheet">
+<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+			<main class="col-md-12 main-content">
+				<div class="page-title">
+					<h1>关于系统</h1>
+				</div>
+				<ul class="timeline animated">
+					#foreach($row in $!list)
+						<li>
+							<div class="timeline-time">
+								<strong>$!dateUtil.getDateCN($!row.abouttime)</strong>
+							</div>
+							<div class="timeline-icon">
+								<div class="bg-success">
+									<i class="icon-time"></i>
+								</div>
+							</div>
+							<div class="timeline-content">
+								<h2>$!row.title</h2>
+								<p>$!row.detail</p>
+							</div>
+						</li>
+					#end
+				</ul>
+			</main>
+		</div>
+	</div>
+</section>
+#parse("./foot.html")
+<script type="text/javascript" src="${rc.contextPath}/js/common/timeline.js"></script>

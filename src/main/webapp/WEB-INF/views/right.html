@@ -1,0 +1,52 @@
+<aside class="col-md-4 sidebar">
+                <div class="widget">
+                    <h4 class="title">最新文章</h4>
+                    <div class="content recent-post">
+                    	#foreach($row in $!articleTopList)
+                        <div class="recent-single-post">
+                            <a href="${rc.contextPath}/article/detail/$row.id" class="post-title" title="$!row.title">#if($!row.title.length()>30) $!row.title.substring(0,30)... #else $!row.title #end</a>
+                            <div class="date">$!dateUtil.getDateCN($!row.updatetime)</div>
+                        </div>
+                        #end
+                    </div>
+                </div>
+                <div class="widget">
+                    <h4 class="title">标签云</h4>
+                    <div class="content tag-cloud">
+                    	#foreach($label in $!labelList)
+                        	<a href="${rc.contextPath}/article/label/$!label.labelcode">$!label.labelname</a>
+                    	#end
+                        <a href="${rc.contextPath}/label">...</a>
+                    </div>
+                </div>
+                <div class="widget">
+                    <h4 class="title">关于作者</h4>
+
+                    <div class="content community">
+                        <p>
+                        IT行业工作6年有余，目前就职于一家在线视频互联网企业，平时喜欢写写代码和各种文章，今后会不定时的分享各种技术知识以及工作中遇到的问题。
+                        </p>
+                    </div>
+                </div>
+                <div class="widget">
+                    <h4 class="title">APP下载</h4>
+                    <div class="content download">
+                        <img style="max-width: 110px;max-height: 110px;margin-top:5px;" title="扫我下载一路博客APP" src="${rc.contextPath}/images/android.png">
+                    </div>
+                </div>
+                <div class="widget">
+                    <h4 class="title">微信公众号</h4>
+                    <div class="content download">
+                        <img style="max-width: 110px;max-height: 110px;margin-top:5px;" title="扫码关注我们的微信" src="${rc.contextPath}/images/weixin.jpg">
+                    </div>
+                </div>
+                <div class="widget">
+                    <h4 class="title">社区</h4>
+
+                    <div class="content community">
+                        <p>QQ群：168424095</p>
+                        <p><a href="${rc.contextPath}/msg" title="给管理员提意见">
+                        <i class="fa fa-comments"></i> 给我留言</a></p>
+                    </div>
+                </div>
+            </aside>

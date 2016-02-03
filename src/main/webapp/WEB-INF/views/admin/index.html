@@ -1,0 +1,45 @@
+#parse("./admin/head.html")
+<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+			<main class="col-md-5 col-md-offset-4">
+			<div class="cover">
+				<div class="alert alert-dismissible alert-danger" id="errordiv"
+					style="display: none">
+					<span id="errormsg"></span>
+				</div>
+
+				<div class="form-group">
+					<input class="form-control" id="username" placeholder="用户名/邮箱/手机号"
+						type="text">
+				</div>
+
+				<div class="form-group">
+					<input class="form-control" placeholder="密码" id="password"
+						type="password">
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-8">
+							<input class="form-control" placeholder="验证码" id="scode"
+								type="text">
+						</div>
+						<div class="col-md-4" style="margin-top: 3px; padding-left: 0px;">
+							<img id="authcode" src="${rc.contextPath}/admin/user/getAuthCode"
+								onClick="changecode()" title="看不清点击换一个" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-default btn-block" type="button"
+						onclick="login()" id="loginbtn">登录</button>
+				</div>
+			</div>
+			</main>
+		</div>
+	</div>
+</section>
+#parse("./admin/foot.html")
+<script type="text/javascript" src="${rc.contextPath}/js/user/user.js"></script>

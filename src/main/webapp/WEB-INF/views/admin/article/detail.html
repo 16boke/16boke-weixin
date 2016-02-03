@@ -1,0 +1,52 @@
+#parse("./admin/head.html")
+<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+			<main class="col-md-12">
+				<div class="text-right" style="margin-top: -18px; margin-bottom: 10px;">
+					<a href="${rc.contextPath}/admin/article" class="btn btn-default">返回</a>
+					<a href="${rc.contextPath}/admin/article/edit/$!article.id" class="btn btn-default">修改</a>
+				</div>
+				<article id="61" class="post tag-lumen tag-xin-ban-ben-fa-bu">
+					#if($!article.recommend == "1")
+					<div title="推荐文章" class="featured">
+				        <i class="fa fa-star"></i>
+				    </div>
+				    #end
+					<header class="post-head">
+						<h1 class="post-title">$!article.title</h1>
+						<section class="post-meta">
+							<span class="author">阅读量：$!article.browsecount</span> &bull;
+							<time class="post-date" datetime="$!dateUtil.getTimeCN($!article.updatetime)"
+								title="$!dateUtil.getTimeCN($!article.updatetime)"> $!dateUtil.getTimeCN($!article.updatetime) </time>
+						</section>
+						<div class="pull-left tag-list">
+							标签：
+							#foreach($row in $!article.label)
+								$row.labelname&nbsp;
+							#end
+						</div>
+						#if($!article.description)
+						<br>
+						<div class="pull-left tag-list">
+							描述：$!article.description
+						</div>
+						#end
+					</header>
+					#if($!article.cover)
+					<section class="featured-media">
+						<img src="$!article.cover" alt="$!article.title">
+					</section>
+					#end
+
+					<section class="post-content">
+						$!article.detail
+					</section>
+
+				</article>
+			</main>
+		</div>
+	</div>
+</section>
+#parse("./admin/foot.html")

@@ -1,0 +1,44 @@
+#parse("./admin/head.html")
+<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+			<main class="col-md-6 col-md-offset-3">
+			<div class="cover">
+				<form id="linkForm" class="form-horizontal" method="post" action="${rc.contextPath}/admin/link/save">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">链接名：</label>
+						<div class="col-sm-8 text-left">
+							<input type="hidden" id="id" name="id" value="$!link.id">
+							<input class="form-control" id="linkname" name="linkname" value="$!link.linkname"
+								placeholder="链接名" type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">链接地址名：</label>
+						<div class="col-sm-8 text-left">
+							<input class="form-control" id="linkurl" name="linkurl" value="$!link.linkurl"
+								placeholder="链接地址" type="text">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">排序号：</label>
+						<div class="col-sm-8 text-left">
+							<input class="form-control" id="pxh" name="pxh" placeholder="排序号" value="$!link.pxh"
+								type="text">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<button class="btn btn-default" type="submit" id="saveLink">保存</button>
+						<button class="btn btn-default" type="button" id="cancelLink">取消</button>
+					</div>
+				</form>
+			</div>
+			</main>
+		</div>
+	</div>
+</section>
+#parse("./admin/foot.html")
+<script type="text/javascript" src="${rc.contextPath}/js/link/link.js"></script>
